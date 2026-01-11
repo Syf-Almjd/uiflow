@@ -19,7 +19,7 @@ Widget itemsList({
           border: Border.all(
               color: isClicked == false
                   ? Colors.transparent
-                  : Colors.grey.withOpacity(0.3),
+                  : Colors.grey.withValues(alpha: 0.3),
               style: BorderStyle.solid,
               width: 0.75),
           borderRadius: BorderRadius.circular(20),

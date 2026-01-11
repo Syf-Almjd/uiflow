@@ -122,14 +122,14 @@ ThemeData getDarkApplicationTheme() {
       // will be used incase of disabled button for example
       hintColor: AppColors.grey,
       // card view theme
-      cardTheme: CardTheme(
+      cardTheme: const CardThemeData(
           color: AppColors.white,
           shadowColor: AppColors.grey,
           elevation: AppSize.s4),
       // App bar theme
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          color: AppColors.primaryColor,
+          backgroundColor: AppColors.primaryColor,
           elevation: AppSize.s4,
           shadowColor: AppColors.lowPriority,
           titleTextStyle: getRegularStyle(
@@ -170,25 +170,25 @@ ThemeData getDarkApplicationTheme() {
         errorStyle: getRegularStyle(color: AppColors.redColor),
 
         // enabled border
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.grey, width: AppSize.s1_5),
-            borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8))),
+            borderRadius: BorderRadius.all(Radius.circular(AppSize.s8))),
 
         // focused border
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
             borderSide:
                 BorderSide(color: AppColors.primaryColor, width: AppSize.s1_5),
-            borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8))),
+            borderRadius: BorderRadius.all(Radius.circular(AppSize.s8))),
 
         // error border
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
             borderSide:
                 BorderSide(color: AppColors.redColor, width: AppSize.s1_5),
-            borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8))),
+            borderRadius: BorderRadius.all(Radius.circular(AppSize.s8))),
         // focused error border
-        focusedErrorBorder: OutlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
             borderSide:
                 BorderSide(color: AppColors.primaryColor, width: AppSize.s1_5),
-            borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8))),
+            borderRadius: BorderRadius.all(Radius.circular(AppSize.s8))),
       ));
 }

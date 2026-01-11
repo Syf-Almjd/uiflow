@@ -26,30 +26,90 @@
 </p>
 
 
-## Features
+## ✨ Features
 
-- 🎨 Consistent Colors and Fonts
-- 📦 Local Assets Management
-- 📊 Enums and Extensions for Easy Development
-- 🌐 Responsive Design Components
-- 🌈 Beautiful Buttons and Fonts
-- ⚙️ General-purpose Utilities
-- 🚀 Loading and Skeleton Widgets
-- ... and much more!
+### 🎨 Theming & Styling
+- **Pre-built Themes**: Light and dark theme support out of the box
+- **Consistent Color Palette**: Predefined colors for consistent UI
+- **Typography System**: Multiple text styles (regular, medium, bold, semi-bold)
+- **Customizable**: Easy to override with your brand colors
+
+### 🧩 UI Components
+- **Smart Buttons**: Pre-styled buttons with various styles and states
+- **Loading Widgets**: Beautiful loading indicators and dialogs
+- **Toast Notifications**: Quick feedback with success, error, and info toasts
+- **Image Preview**: Advanced image viewing with network loading states
+- **Multi-Select Widget**: Elegant selection UI with single/multiple selection modes
+- **Display Widgets**: Pre-built widgets for lists, grids, and cards
+- **🆕 Badges**: Notification badges with count support
+- **🆕 Chips**: Selectable and deletable chip widgets
+- **🆕 Cards**: Pre-styled card components with elevation
+- **🆕 Avatars**: User avatars with fallback initials
+- **🆕 Dividers**: Text dividers and separators
+- **🆕 Empty States**: Beautiful empty state screens
+- **🆕 Progress Bars**: Linear progress indicators with labels
+
+### 🎭 Animations
+- **🆕 Slide Transitions**: From top, bottom, left, right
+- **🆕 Fade Animations**: Smooth fade in/out effects
+- **🆕 Scale Animations**: Elastic and smooth scaling
+- **🆕 Rotation Animations**: Rotation transitions
+- **🆕 Combined Animations**: Fade+Slide, Fade+Scale combos
+- **🆕 Staggered Lists**: Beautiful list entrance animations
+- **🆕 Shimmer Loading**: Skeleton loading effect
+
+### 📋 Forms & Validation
+- **🆕 Form Validators**: Email, password, phone, credit card, URL, username, etc.
+- **🆕 Text Formatters**: Phone, credit card, currency, date, SSN formatting
+- **🆕 Custom Validators**: Combine multiple validators
+- **🆕 Password Strength**: Configurable password requirements
+
+### 💬 Dialogs & Modals
+- **🆕 Confirmation Dialogs**: Yes/No with danger mode
+- **🆕 Info Dialogs**: Informational alerts
+- **🆕 Error Dialogs**: Error notifications
+- **🆕 Success Dialogs**: Success confirmations
+- **🆕 Input Dialogs**: Text input with validation
+- **🆕 Selection Dialogs**: Choose from list
+- **🆕 Bottom Sheets**: Modal bottom sheets
+- **🆕 Custom Dialogs**: Fully customizable
+
+### 📐 Responsive Design
+- **Screen Aware**: Automatic responsive sizing based on screen dimensions
+- **Easy to Use**: Simple `getWidth()` and `getHeight()` functions
+- **Cross-Platform**: Works seamlessly on mobile, tablet, and desktop
+
+### 🛠️ Utilities & Extensions
+- **Asset Management**: Centralized asset path management
+- **Constants**: App-wide constants for consistency
+- **Enums**: Type-safe enumerations for better code quality
+- **🆕 String Extensions**: 25+ string helpers (capitalize, truncate, validate, mask, etc.)
+- **🆕 DateTime Extensions**: Time ago, formatting, date math
+- **🆕 List Extensions**: Chunking, unique, shuffle
+- **🆕 BuildContext Extensions**: Screen size, theme access, navigation shortcuts
+- **🆕 Number Extensions**: Currency formatting, ordinals
+
+### 🚀 Developer Experience
+- **Well Documented**: Comprehensive inline documentation
+- **Type Safe**: Full null-safety support
+- **Easy Integration**: Simple import and use
+- **Minimal Dependencies**: Only essential plugins included
+- **Production Ready**: Battle-tested components
+- **35+ Components**: Extensive toolkit for rapid development
 
 ## 📗 Installation
 
-Add the following line to your `pubspec.yaml` file:
+Add `uiflow` to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  uiflow: <check latest version>
+  uiflow: ^0.3.1
 ```
 
 Then run:
 
 ```bash
-$ flutter pub get
+flutter pub get
 ```
 
 ## 🗜️ Usage
@@ -57,34 +117,89 @@ $ flutter pub get
 Import the library in your Dart file:
 
 ```dart
-import 'package:uiflow/uiflow.dart' as components;
+import 'package:uiflow/uiflow.dart';
+```
+
+You can also import with a prefix for better code organization:
+
+```dart
+import 'package:uiflow/uiflow.dart' as ui;
 ```
 
 Now you can start using the various components provided by `uiflow` to enhance your Flutter app!
 
-## 🈂️ Example
+## 🈂️ Examples
+
+### Basic Usage
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:uiflow/uiflow.dart' as components;
+import 'package:uiflow/uiflow.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('UIFlow Components Example'),
+      title: 'UIFlow Demo',
+      theme: getApplicationTheme(), // Use UIFlow theme
+      darkTheme: getDarkApplicationTheme(), // Dark theme support
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'UIFlow Components',
+          style: getBoldStyle(color: AppColors.white),
         ),
-        body: Center(
-          child: Text(
-            'Welcome to UIFlow Components!',
-            style: components.getBoldStyle(), //This (components.) allows you to access all components
-          ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Using text styles
+            Text(
+              'Welcome to UIFlow!',
+              style: getBoldStyle(
+                color: AppColors.primaryColor,
+                fontSize: AppFontSize.s24,
+              ),
+            ),
+            const SizedBox(height: 20),
+            
+            // Using responsive design
+            Text(
+              'Responsive Width: ${getWidth(50, context)}',
+              style: getRegularStyle(),
+            ),
+            const SizedBox(height: 20),
+            
+            // Using buttons
+            getButton(
+              text: 'Primary Button',
+              onPressed: () {
+                showToast(
+                  msg: 'Button clicked!',
+                  toastType: ToastType.success,
+                );
+              },
+              context: context,
+            ),
+          ],
         ),
       ),
     );
@@ -92,8 +207,151 @@ class MyApp extends StatelessWidget {
 }
 ```
 
+### Using Multiple Item Selection
 
-## 🧾 Documentation
+```dart
+MultipleItemSelect(
+  name: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+  multiSelection: true,
+  primaryColor: AppColors.primaryColor,
+  secondaryColor: AppColors.grey,
+  itemPerRow: 2,
+  onTap: (selectedItem) {
+    print('Selected: $selectedItem');
+  },
+)
+```
+
+### Using Loading Widgets
+
+```dart
+// Show loading indicator
+showLoadingDialog(context);
+
+// After async operation
+Navigator.pop(context);
+```
+
+### Responsive Design
+
+```dart
+Container(
+  width: getWidth(80, context), // 80% of screen width
+  height: getHeight(30, context), // 30% of screen height
+  child: YourWidget(),
+)
+```
+
+## 📚 API Reference
+
+### Theming
+
+#### `getApplicationTheme()`
+Returns the light theme for your application.
+
+```dart
+MaterialApp(
+  theme: getApplicationTheme(),
+)
+```
+
+#### `getDarkApplicationTheme()`
+Returns the dark theme for your application.
+
+```dart
+MaterialApp(
+  darkTheme: getDarkApplicationTheme(),
+)
+```
+
+### Text Styles
+
+All text style functions accept optional `color` and `fontSize` parameters.
+
+```dart
+// Available text styles
+getRegularStyle({Color? color, double? fontSize})
+getMediumStyle({Color? color, double? fontSize})
+getSemiBoldStyle({Color? color, double? fontSize})
+getBoldStyle({Color? color, double? fontSize})
+getLightStyle({Color? color, double? fontSize})
+```
+
+### Buttons
+
+#### `getButton()`
+Creates a customizable button with various styles.
+
+```dart
+getButton(
+  text: 'Click Me',
+  onPressed: () {},
+  context: context,
+  backgroundColor: AppColors.primaryColor, // optional
+  textColor: AppColors.white, // optional
+  width: double.infinity, // optional
+)
+```
+
+### Responsive Design
+
+```dart
+// Get responsive width (percentage of screen width)
+double width = getWidth(50, context); // 50% of screen width
+
+// Get responsive height (percentage of screen height)
+double height = getHeight(30, context); // 30% of screen height
+```
+
+### Toast Notifications
+
+```dart
+showToast(
+  msg: 'Your message here',
+  toastType: ToastType.success, // or ToastType.error, ToastType.info
+)
+```
+
+### Loading Dialogs
+
+```dart
+// Show loading dialog
+showLoadingDialog(context);
+
+// Dismiss loading dialog
+Navigator.pop(context);
+```
+
+### Colors
+
+Access predefined colors from `AppColors`:
+
+```dart
+AppColors.primaryColor
+AppColors.darkColor
+AppColors.white
+AppColors.grey
+AppColors.greyDark
+AppColors.greenColor
+AppColors.redColor
+AppColors.lowPriority
+```
+
+### Font Sizes
+
+Access consistent font sizes from `AppFontSize`:
+
+```dart
+AppFontSize.s12
+AppFontSize.s14
+AppFontSize.s16
+AppFontSize.s18
+AppFontSize.s20
+AppFontSize.s24
+// and more...
+```
+
+
 
 Explore detailed documentation and examples by visiting the [official documentation](https://pub.dev/packages/uiflow/example). Whether you're a beginner or an experienced developer, this resource provides valuable insights into effectively using UIFlow Components.
 

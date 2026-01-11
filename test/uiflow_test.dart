@@ -1,28 +1,24 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:uiflow/uiflow.dart';
-import 'package:uiflow/uiflow_platform_interface.dart';
-import 'package:uiflow/uiflow_method_channel.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-class MockUiflowPlatform
-    with MockPlatformInterfaceMixin
-    implements UiflowPlatform {
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
-}
 
 void main() {
-  final UiflowPlatform initialPlatform = UiflowPlatform.instance;
+  group('UIFlow Components Tests', () {
+    test('AppColors are defined', () {
+      expect(AppColors.primaryColor, isNotNull);
+      expect(AppColors.darkColor, isNotNull);
+      expect(AppColors.white, isNotNull);
+    });
 
-  test('$MethodChannelUiflow is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelUiflow>());
-  });
+    test('AppFontSize values are defined', () {
+      expect(AppFontSize.s12, isA<double>());
+      expect(AppFontSize.s14, isA<double>());
+      expect(AppFontSize.s16, isA<double>());
+    });
 
-  test('getPlatformVersion', () async {
-    Uiflow uiflowPlugin = Uiflow();
-    MockUiflowPlatform fakePlatform = MockUiflowPlatform();
-    UiflowPlatform.instance = fakePlatform;
-
-    expect(await uiflowPlugin.getPlatformVersion(), '42');
+    test('App values are defined', () {
+      expect(AppSize.s4, isA<double>());
+      expect(AppSize.s8, isA<double>());
+      expect(AppPadding.p8, isA<double>());
+    });
   });
 }

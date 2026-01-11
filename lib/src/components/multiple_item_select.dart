@@ -108,7 +108,7 @@ class _MultipleItemSelectState extends State<MultipleItemSelect> {
               borderRadius: BorderRadius.circular(30),
               color: (isSelected[index])
                   ? widget.primaryColor ?? Colors.teal
-                  : widget.secondaryColor ?? Colors.grey.withOpacity(0.3),
+                  : widget.secondaryColor ?? Colors.grey.withValues(alpha: 0.3),
             ),
             child: Center(
               child: AnimatedContainer(
@@ -123,7 +123,7 @@ class _MultipleItemSelectState extends State<MultipleItemSelect> {
                           color: Colors.white)
                       : TextStyle(
                           fontSize: 20,
-                          color: Colors.grey.withOpacity(0.9),
+                          color: Colors.grey.withValues(alpha: 0.9),
                         ),
                 ),
               ),
