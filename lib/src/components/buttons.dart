@@ -130,7 +130,13 @@ Widget loadButton({
 }) {
   return Visibility(
     visible: !isLoading,
-    replacement: Container(
+    replacement: loadingAnimation(
+      loadingType: LoadingAnimationWidget.beat(
+        color: AppColors.primaryColor,
+        size: getWidth(10, context),
+      ),
+    ),
+    child: Container(
       width: buttonWidth ?? getWidth(80, context),
       height: buttonHeight ?? 60.0,
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -149,12 +155,6 @@ Widget loadButton({
             color: textColor ?? Colors.white,
           ),
         ),
-      ),
-    ),
-    child: loadingAnimation(
-      loadingType: LoadingAnimationWidget.beat(
-        color: AppColors.primaryColor,
-        size: getWidth(10, context),
       ),
     ),
   );

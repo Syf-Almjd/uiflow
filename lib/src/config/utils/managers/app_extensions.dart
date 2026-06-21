@@ -338,6 +338,16 @@ extension IntExtensions on int {
 
   /// Checks if number is odd
   bool get isOdd => this % 2 != 0;
+
+  /// Gets month name (1 -> January, 12 -> December)
+  String get dateMonthName {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    if (this < 1 || this > 12) return '';
+    return months[this - 1];
+  }
 }
 
 extension DoubleExtensions on double {
@@ -353,6 +363,6 @@ extension DoubleExtensions on double {
 
   /// Clamps value between min and max
   double clampValue(double min, double max) {
-    return clamp(min, max);
+    return clamp(min, max).toDouble();
   }
 }

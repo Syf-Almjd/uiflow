@@ -12,7 +12,7 @@ import '../config/utils/styles/app_colors.dart';
 /// Parameters:
 /// - [context]: Build context.
 /// - [appAssetPath]: Path to the app logo asset.
-Padding logoContainer(context, String appAssetPath) {
+Padding logoContainer(BuildContext context, String appAssetPath) {
   return Padding(
     padding: const EdgeInsets.all(50.0),
     child: Container(
@@ -35,8 +35,8 @@ Padding logoContainer(context, String appAssetPath) {
 /// Parameters:
 /// - [fileUser]: Base64-encoded image string.
 /// - [context]: Build context.
-Widget previewProductImage(fileUser, context) {
-  fileUser = base64Decode(fileUser);
+Widget previewProductImage(String fileUser, BuildContext context) {
+  final bytes = base64Decode(fileUser);
   return Container(
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -45,7 +45,7 @@ Widget previewProductImage(fileUser, context) {
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Image.memory(
-        fileUser,
+        bytes,
         height: getHeight(20, context),
         width: getWidth(30, context),
         fit: BoxFit.cover,
@@ -147,14 +147,15 @@ Widget previewBase64Image({
   double padding = 5.0,
   Color backgroundColor = Colors.transparent,
   double photoRadius = 15.0,
-  required fileUser,
+  required String fileUser,
   bool editable = false,
-  required context,
+  required BuildContext context,
 }) {
-  if (fileUser == AppConstants.noPhotoUser) {
-    fileUser = AppConstants.sampleBase64Image;
+  String imageString = fileUser;
+  if (imageString == AppConstants.noPhotoUser) {
+    imageString = AppConstants.sampleBase64Image;
   }
-  fileUser = base64Decode(fileUser);
+  final bytes = base64Decode(imageString);
   return Stack(
     children: [
       Container(
@@ -168,7 +169,7 @@ Widget previewBase64Image({
             child: ClipRRect(
               borderRadius: BorderRadius.circular(photoRadius),
               child: Image.memory(
-                fileUser,
+                bytes,
                 fit: BoxFit.cover,
               ),
             ),
@@ -204,7 +205,7 @@ Widget previewBase64Image({
 ///
 /// Parameters:
 /// - [context]: Build context.
-Widget chooseFile(context) {
+Widget chooseFile(BuildContext context) {
   return Container(
     decoration: const BoxDecoration(
         color: AppColors.primaryColor,

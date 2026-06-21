@@ -34,14 +34,14 @@ class AppDialogs {
             Expanded(
               child: Text(
                 title,
-                style: getBoldStyle(fontSize: 18),
+                style: getBoldStyle(fontSize: 18, color: AppColors.darkColor),
               ),
             ),
           ],
         ),
         content: Text(
           message,
-          style: getRegularStyle(),
+          style: getRegularStyle(color: AppColors.darkColor),
         ),
         actions: [
           TextButton(
@@ -96,14 +96,14 @@ class AppDialogs {
             Expanded(
               child: Text(
                 title,
-                style: getBoldStyle(fontSize: 18),
+                style: getBoldStyle(fontSize: 18, color: AppColors.darkColor),
               ),
             ),
           ],
         ),
         content: Text(
           message,
-          style: getRegularStyle(),
+          style: getRegularStyle(color: AppColors.darkColor),
         ),
         actions: [
           ElevatedButton(
@@ -151,7 +151,7 @@ class AppDialogs {
         ),
         content: Text(
           message,
-          style: getRegularStyle(),
+          style: getRegularStyle(color: AppColors.darkColor),
         ),
         actions: [
           ElevatedButton(
@@ -199,7 +199,7 @@ class AppDialogs {
         ),
         content: Text(
           message,
-          style: getRegularStyle(),
+          style: getRegularStyle(color: AppColors.darkColor),
         ),
         actions: [
           ElevatedButton(
@@ -281,7 +281,7 @@ class AppDialogs {
         ),
         title: Text(
           title,
-          style: getBoldStyle(fontSize: 18),
+          style: getBoldStyle(fontSize: 18, color: AppColors.darkColor),
         ),
         content: Form(
           key: formKey,
@@ -292,7 +292,7 @@ class AppDialogs {
               if (message != null) ...[
                 Text(
                   message,
-                  style: getRegularStyle(),
+                  style: getRegularStyle(color: AppColors.darkColor),
                 ),
                 const SizedBox(height: 16),
               ],
@@ -356,7 +356,7 @@ class AppDialogs {
         ),
         title: Text(
           title,
-          style: getBoldStyle(fontSize: 18),
+          style: getBoldStyle(fontSize: 18, color: AppColors.darkColor),
         ),
         content: SizedBox(
           width: double.maxFinite,
@@ -372,7 +372,7 @@ class AppDialogs {
                   itemBuilder(item),
                   style: isSelected
                       ? getBoldStyle(color: AppColors.primaryColor)
-                      : getRegularStyle(),
+                      : getRegularStyle(color: AppColors.darkColor),
                 ),
                 trailing: isSelected
                     ? const Icon(Icons.check, color: AppColors.primaryColor)

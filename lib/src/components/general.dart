@@ -13,7 +13,7 @@ String generateCode() {
       8, (_) => chars.codeUnitAt(Random().nextInt(chars.length))));
 }
 
-/// Validates a form based on the provided GlobalKey<FormState>.
+/// Validates a form based on the provided `GlobalKey<FormState>`.
 ///
 /// Returns true if the form is valid, otherwise false.
 bool validateForm(GlobalKey<FormState> validateKey) {

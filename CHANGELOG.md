@@ -1,7 +1,9 @@
-
-### Version 0.3.1
-- Fixed pub.dev publication issues
-- Replaced deprecated `withOpacity` with `withValues()`
+## 2.5.0
+- **Major Fixes**: Resolved all static analysis errors, warnings, lints, and type annotations
+- **Dependency Upgrades**: Bumped minimum Flutter SDK constraint to `>=3.22.0` to fully support `withValues()`; updated `google_fonts`, `web`, and `flutter_lints`
+- **Reversed Load Button Fix**: Swapped visibility condition logic in `loadButton` loader/button states
+- **Example App Rewrite**: Replaced broken copy-pasted markdown examples with a pristine tabbed demo dashboard
+- **API Exporter**: Exported standard platform interface classes to support default integration tests
 - Fixed CardTheme to CardThemeData compatibility
 - Removed deprecated author field
 - Added const keywords for better performance
@@ -13,12 +15,12 @@
 - **NEW: Enhanced Extensions** - String, DateTime, List, BuildContext, int, and double extensions
 - **Major Enhancement**: Package now includes 35+ components and utilities
 
-### Version 0.3.0
+## 0.3.0
 - removed old naming
 
-### Version 0.2.0
+## 0.2.0
 - Fixed hidden bugs
 - Upgraded dependencies
 
-### Version 0.1.0
+## 0.1.0
 - Initial release of the Components, providing seamless of UI and UX user experience.

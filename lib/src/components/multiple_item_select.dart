@@ -29,7 +29,7 @@ class MultipleItemSelect extends StatefulWidget {
 
   /// Constructs a [MultipleItemSelect].
   const MultipleItemSelect({
-    Key? key,
+    super.key,
     required this.name,
     this.primaryColor,
     this.secondaryColor,
@@ -38,7 +38,7 @@ class MultipleItemSelect extends StatefulWidget {
     this.multiSelection,
     this.itemPerRow,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<MultipleItemSelect> createState() => _MultipleItemSelectState();

@@ -1,10 +1,5 @@
-<h3 align="center">🚀 Access All Components Example (The Easy Way) 🚀</h3>
-
-```dart
-
 import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart'
-    as components;
+import 'package:uiflow/uiflow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,472 +11,420 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('uiflow Components Example'),
-        ),
-        body: Center(
-          child: Text(
-            'Welcome to uiflow Components!',
-            style: components.getRegularStyle(
-                color: Colors
-                    .black), //This (components.) allows you to access all components
-          ),
-        ),
-      ),
+      title: 'uiflow Showcase',
+      debugShowCheckedModeBanner: false,
+      theme: getApplicationTheme(),
+      darkTheme: getDarkApplicationTheme(),
+      themeMode: ThemeMode.light,
+      home: const ShowcaseHomeScreen(),
     );
   }
 }
-```
 
+class ShowcaseHomeScreen extends StatefulWidget {
+  const ShowcaseHomeScreen({super.key});
 
-
-
-
-<h3 align="center">🎨 Access Components Individually Examples (The Traditional Way) 🎨</h3>
-
-### App Colors 🍭
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Colors Example'),
-          backgroundColor: AppColors.primaryColor,
-        ),
-        body: Container(
-          color: AppColors.backgroundColor,
-          child: Center(
-            child: Text(
-              'This is an example of using App Colors',
-              style: TextStyle(color: AppColors.textColor),
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
+  @override
+  State<ShowcaseHomeScreen> createState() => _ShowcaseHomeScreenState();
 }
-```
 
-### App Fonts 📝
+class _ShowcaseHomeScreenState extends State<ShowcaseHomeScreen> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  bool _isButtonLoading = false;
+  final _formKey = GlobalKey<FormState>();
+  final _phoneController = TextEditingController();
+  final _cardController = TextEditingController();
+  final _currencyController = TextEditingController();
+  final _customFieldController = TextEditingController();
+  
+  double _progressValue = 0.45;
+  int _badgeCount = 5;
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Fonts Example'),
-        ),
-        body: Center(
-          child: Text(
-            'This is an example of using App Fonts',
-            style: getBoldStyle(),
-          ),
-        ),
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _phoneController.dispose();
+    _cardController.dispose();
+    _currencyController.dispose();
+    _customFieldController.dispose();
+    super.dispose();
+  }
+
+  void _showResultSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.primaryColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-    ),
-  );
-}
-```
+    );
+  }
 
-### App Text Styles ✨
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Text Styles Example'),
-        ),
-        body: Center(
-          child: Text(
-            'This is an example of using App Text Styles',
-            style: getSemiBoldStyle(),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### App Local Assets 🖼️
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Local Assets Example'),
-        ),
-        body: Center(
-          child: Image.asset(
-            AppAssets.logo,
-            width: 150,
-            height: 150,
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### App Local Constants 📌
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Local Constants Example'),
-        ),
-        body: Center(
-          child: Text(
-            'This is an example of using App Local Constants: ${AppConstants.appName}',
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### App Enums 🔢
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Enums Example'),
-        ),
-        body: Center(
-          child: Text(
-            'This is an example of using App Enums: ${AppAxis.horizontal}',
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### App Extensions 🚀
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Extensions Example'),
-        ),
-        body: Center(
-          child: Text(
-            'This is an example of using App Extensions: ${'Hello'.capitalize()}',
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### App Values 📏
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('App Values Example'),
-        ),
-        body: Padding(
-          padding: AppPadding.all,
-          child: Container(
-            width: AppSize.large,
-            height: AppSize.medium,
-            color: AppColors.primaryColor,
-            child: Center(
-              child: Text(
-                'This is an example of using App Values',
-                style: getMediumStyle(),
-              ),
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### Buttons 🛍️
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Buttons Example'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              textFieldA(),
-              SizedBox(height: AppMargin.small),
-              loadButton(),
-              SizedBox(height: AppMargin.small),
-              buttonA(),
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### Fonts 🎀
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Fonts Example'),
-        ),
-        body: Center(
-          child: Text(
-            'This is an example of using Fonts',
-            style: fontPoppins(),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### MultipleItemSelect ✅
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('MultipleItemSelect Example'),
-        ),
-        body: MultipleItemSelect(
-          items: ['Item 1', 'Item 2', 'Item 3'],
-          onSelectionChanged: (selectedItems) {
-            print('Selected Items: $selectedItems');
-          },
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### Toast Show 🍞
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Toast Show Example'),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              showToast('This is a toast message!');
-            },
-            child: Text('Show Toast'),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-```
-
-### Widgets Display 🧩
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Widgets Display Example'),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            columnHomeItems(),
-            itemsList(),
-            simpleCard(),
-            rowHomeItems(),
-            socialMediaItem(),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('uiflow Components Showcase', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        backgroundColor: AppColors.appBarColor,
+        elevation: 4,
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.white70,
+          tabs: const [
+            Tab(icon: Icon(Icons.widgets), text: 'Widgets'),
+            Tab(icon: Icon(Icons.input), text: 'Forms & Buttons'),
+            Tab(icon: Icon(Icons.question_answer), text: 'Dialogs'),
           ],
         ),
       ),
-    ),
-  );
-}
-```
-
-### Responsiveness 📱
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Responsiveness Example'),
-        ),
-        body: Container(
-          height: getHeight(50),
-          width: getWidth(80),
-          color: AppColors.primaryColor,
-          child: Center(
-            child: Text(
-
-
-              'This is an example of using Responsiveness',
-              style: getMediumStyle(),
-            ),
-          ),
-        ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          _buildWidgetsTab(),
+          _buildFormsTab(),
+          _buildDialogsTab(),
+        ],
       ),
-    ),
-  );
-}
-```
+    );
+  }
 
-### Images Preview 🖼️
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Images Preview Example'),
+  Widget _buildWidgetsTab() {
+    return ListView(
+      padding: const EdgeInsets.all(16.0),
+      children: [
+        const Text(
+          'Advanced Widgets',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.darkColor),
         ),
-        body: SingleChildScrollView(
+        const SizedBox(height: 8),
+        const Text(
+          'Clean, customizable layout widgets built for high performance and premium styling.',
+          style: TextStyle(color: Colors.grey),
+        ),
+        const AppDivider(text: 'AppCard & Badges'),
+        
+        AppCard(
+          elevation: 4,
+          padding: const EdgeInsets.all(16),
+          borderRadius: BorderRadius.circular(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              logoContainer(),
-              previewProductImage(),
-              buildProductDetails(),
-              socialMediaItems(),
-              previewBase64Image(),
-              chooseFile(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Card with Elevation',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  AppBadge(
+                    text: _badgeCount > 9 ? '9+' : _badgeCount.toString(),
+                    backgroundColor: AppColors.primaryColor,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Text('This Card demonstrates the elevation and custom inner spacing helper layout in uiflow.'),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () => setState(() => _badgeCount++),
+                    child: const Text('Increment Badge'),
+                  ),
+                  const SizedBox(width: 8),
+                  TextButton(
+                    onPressed: () => setState(() => _badgeCount = 0),
+                    child: const Text('Clear'),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
-      ),
-    ),
-  );
-}
-```
-
-### General ⚙️
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:uiflow_components/uiflow_components.dart';
-
-void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('General Example'),
+        
+        const AppDivider(text: 'AppChips & Avatars'),
+        
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          alignment: WrapAlignment.center,
+          children: [
+            const AppAvatar(
+              name: 'John Doe',
+              size: 50,
+            ),
+            const AppAvatar(
+              name: 'Saif Al Majd',
+              size: 50,
+              backgroundColor: AppColors.secondaryColor,
+            ),
+            AppChip(
+              label: 'Selected Tag',
+              selected: true,
+              icon: Icons.check,
+              onTap: () => _showResultSnackBar('Selected chip tapped!'),
+            ),
+            AppChip(
+              label: 'Removable Tag',
+              selected: false,
+              icon: Icons.label,
+              onDelete: () => _showResultSnackBar('Chip deleted!'),
+            ),
+          ],
         ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              generateCode();
-              validateForm();
-              openUrl('https://example.com');
-              assetToUint8List('assets/image.png');
-              getWidgetByIndex(0);
-              getDateTimeToDay(DateTime.now());
-            },
-            child: Text('General Functions'),
+
+        const AppDivider(text: 'AppProgress Indicators'),
+        
+        AppCard(
+          child: Column(
+            children: [
+              AppProgress(
+                value: _progressValue,
+                label: 'Download Status',
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      setState(() {
+                        _progressValue = (_progressValue - 0.1).clamp(0.0, 1.0);
+                      });
+                    },
+                  ),
+                  Text('${(_progressValue * 100).toInt()}%'),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      setState(() {
+                        _progressValue = (_progressValue + 0.1).clamp(0.0, 1.0);
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
+
+        const AppDivider(text: 'AppEmptyState'),
+        const SizedBox(
+          height: 240,
+          child: AppEmptyState(
+            icon: Icons.search_off,
+            title: 'No Items Found',
+            message: 'Try adjusting your filters or checking back later.',
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFormsTab() {
+    return Form(
+      key: _formKey,
+      child: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          const Text(
+            'Form Formatters & Validators',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.darkColor),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Advanced inputs, pre-built formatters, and validation helpers.',
+            style: TextStyle(color: Colors.grey),
+          ),
+          const AppDivider(text: 'Pre-styled Text Field'),
+          
+          textFieldA(
+            controller: _customFieldController,
+            hintText: 'Enter random text',
+            prefixIcon: const Icon(Icons.text_fields),
+          ),
+          
+          const AppDivider(text: 'Input Formatters'),
+          
+          TextFormField(
+            controller: _phoneController,
+            keyboardType: TextInputType.phone,
+            inputFormatters: [AppFormatters.phone()],
+            decoration: const InputDecoration(
+              labelText: 'Phone Formatter',
+              hintText: '(123) 456-7890',
+              prefixIcon: Icon(Icons.phone),
+              border: OutlineInputBorder(),
+            ),
+            validator: AppValidators.phone,
+          ),
+          const SizedBox(height: 16),
+          
+          TextFormField(
+            controller: _cardController,
+            keyboardType: TextInputType.number,
+            inputFormatters: [AppFormatters.creditCard()],
+            decoration: const InputDecoration(
+              labelText: 'Credit Card Formatter',
+              hintText: '1234 5678 1234 5678',
+              prefixIcon: Icon(Icons.credit_card),
+              border: OutlineInputBorder(),
+            ),
+            validator: AppValidators.creditCard,
+          ),
+          const SizedBox(height: 16),
+
+          TextFormField(
+            controller: _currencyController,
+            keyboardType: TextInputType.number,
+            inputFormatters: [AppFormatters.currency()],
+            decoration: const InputDecoration(
+              labelText: 'Currency Formatter',
+              hintText: '\$0.00',
+              prefixIcon: Icon(Icons.attach_money),
+              border: OutlineInputBorder(),
+            ),
+          ),
+          
+          const AppDivider(text: 'Buttons & Loaders'),
+          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              buttonA(
+                buttonText: 'buttonA Simple',
+                onPressed: () {
+                  _showResultSnackBar('buttonA pressed!');
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+
+          loadButton(
+            context: context,
+            buttonText: 'Submit Form (loadButton)',
+            isLoading: _isButtonLoading,
+            onPressed: () async {
+              if (_formKey.currentState?.validate() ?? false) {
+                setState(() => _isButtonLoading = true);
+                await Future.delayed(const Duration(seconds: 2));
+                setState(() => _isButtonLoading = false);
+                _showResultSnackBar('Form successfully submitted!');
+              } else {
+                _showResultSnackBar('Please fix errors in the form.');
+              }
+            },
+          ),
+        ],
       ),
-    ),
-  );
+    );
+  }
+
+  Widget _buildDialogsTab() {
+    return ListView(
+      padding: const EdgeInsets.all(16.0),
+      children: [
+        const Text(
+          'Interactive Dialog Helpers',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.darkColor),
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          'Launch premium alert dialogs, confirmation dialogs, inputs, and selectors.',
+          style: TextStyle(color: Colors.grey),
+        ),
+        const AppDivider(text: 'Action Dialogs'),
+        
+        ListTile(
+          title: const Text('Confirmation Dialog'),
+          subtitle: const Text('Asks user to accept or reject an action'),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () async {
+            final res = await AppDialogs.showConfirmation(
+              context,
+              title: 'Delete Item?',
+              message: 'This process cannot be undone. Are you sure?',
+              isDangerous: true,
+            );
+            _showResultSnackBar('Confirmation Dialog Result: $res');
+          },
+        ),
+        const Divider(),
+        
+        ListTile(
+          title: const Text('Success Dialog'),
+          subtitle: const Text('Shows success status feedback'),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () async {
+            await AppDialogs.showSuccess(
+              context,
+              title: 'Success!',
+              message: 'Your file has been uploaded successfully.',
+            );
+          },
+        ),
+        const Divider(),
+
+        ListTile(
+          title: const Text('Error Dialog'),
+          subtitle: const Text('Shows error status feedback'),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () async {
+            await AppDialogs.showError(
+              context,
+              message: 'Could not connect to server. Please try again.',
+            );
+          },
+        ),
+        const Divider(),
+
+        ListTile(
+          title: const Text('Input Dialog'),
+          subtitle: const Text('Collects text input dynamically'),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () async {
+            final val = await AppDialogs.showInput(
+              context,
+              title: 'New Project Name',
+              hintText: 'Enter name',
+            );
+            if (val != null) {
+              _showResultSnackBar('Project name entered: $val');
+            }
+          },
+        ),
+        const Divider(),
+
+        ListTile(
+          title: const Text('Selection Dialog'),
+          subtitle: const Text('Presents options list to pick from'),
+          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+          onTap: () async {
+            final val = await AppDialogs.showSelection<String>(
+              context,
+              title: 'Select Role',
+              items: ['Administrator', 'Manager', 'Developer', 'Viewer'],
+              itemBuilder: (item) => item,
+              initialSelection: 'Developer',
+            );
+            if (val != null) {
+              _showResultSnackBar('Selected role: $val');
+            }
+          },
+        ),
+      ],
+    );
+  }
 }
-
-```
-
-<p align="center">Happy Fluttering! 💙</p>

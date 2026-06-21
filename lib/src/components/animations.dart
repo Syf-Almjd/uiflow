@@ -143,12 +143,12 @@ class AnimatedFadeIn extends StatefulWidget {
   final Curve curve;
 
   const AnimatedFadeIn({
-    Key? key,
+    super.key,
     required this.child,
     this.duration = const Duration(milliseconds: 300),
     this.delay = Duration.zero,
     this.curve = Curves.easeIn,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedFadeIn> createState() => _AnimatedFadeInState();
@@ -201,13 +201,13 @@ class AnimatedSlideIn extends StatefulWidget {
   final Offset begin;
 
   const AnimatedSlideIn({
-    Key? key,
+    super.key,
     required this.child,
     this.duration = const Duration(milliseconds: 300),
     this.delay = Duration.zero,
     this.curve = Curves.easeOut,
     this.begin = const Offset(0, 0.3),
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedSlideIn> createState() => _AnimatedSlideInState();
@@ -262,12 +262,12 @@ class AnimatedScaleIn extends StatefulWidget {
   final Curve curve;
 
   const AnimatedScaleIn({
-    Key? key,
+    super.key,
     required this.child,
     this.duration = const Duration(milliseconds: 300),
     this.delay = Duration.zero,
     this.curve = Curves.elasticOut,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedScaleIn> createState() => _AnimatedScaleInState();
@@ -320,12 +320,12 @@ class StaggeredListAnimation extends StatelessWidget {
   final Widget Function(BuildContext, int) itemBuilder;
 
   const StaggeredListAnimation({
-    Key? key,
+    super.key,
     required this.itemCount,
     required this.itemBuilder,
     this.staggerDuration = const Duration(milliseconds: 100),
     this.itemDuration = const Duration(milliseconds: 300),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -350,12 +350,12 @@ class ShimmerLoading extends StatefulWidget {
   final Color? highlightColor;
 
   const ShimmerLoading({
-    Key? key,
+    super.key,
     required this.child,
     this.duration = const Duration(milliseconds: 1500),
     this.baseColor,
     this.highlightColor,
-  }) : super(key: key);
+  });
 
   @override
   State<ShimmerLoading> createState() => _ShimmerLoadingState();

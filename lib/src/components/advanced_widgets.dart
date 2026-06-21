@@ -11,13 +11,13 @@ class AppBadge extends StatelessWidget {
   final bool showZero;
 
   const AppBadge({
-    Key? key,
+    super.key,
     required this.text,
     this.backgroundColor,
     this.textColor,
     this.size,
     this.showZero = false,
-  }) : super(key: key);
+  });
 
   factory AppBadge.count({
     required int count,
@@ -77,7 +77,7 @@ class AppChip extends StatelessWidget {
   final bool selected;
 
   const AppChip({
-    Key? key,
+    super.key,
     required this.label,
     this.icon,
     this.backgroundColor,
@@ -85,7 +85,7 @@ class AppChip extends StatelessWidget {
     this.onTap,
     this.onDelete,
     this.selected = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -160,16 +160,16 @@ class AppCard extends StatelessWidget {
   final Border? border;
 
   const AppCard({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.margin,
-this.backgroundColor,
+    this.backgroundColor,
     this.elevation,
     this.onTap,
     this.borderRadius,
     this.border,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -205,14 +205,14 @@ class AppAvatar extends StatelessWidget {
   final VoidCallback? onTap;
 
   const AppAvatar({
-    Key? key,
+    super.key,
     this.imageUrl,
     this.name,
     this.size = 40,
     this.backgroundColor,
     this.textColor,
     this.onTap,
-  }) : super(key: key);
+  });
 
   String _getInitials() {
     if (name == null || name!.isEmpty) return '?';
@@ -266,13 +266,13 @@ class AppDivider extends StatelessWidget {
   final double? endIndent;
 
   const AppDivider({
-    Key? key,
+    super.key,
     this.text,
     this.color,
     this.thickness,
     this.indent,
     this.endIndent,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -325,13 +325,13 @@ class AppEmptyState extends StatelessWidget {
   final VoidCallback? onAction;
 
   const AppEmptyState({
-    Key? key,
+    super.key,
     required this.icon,
     required this.title,
     this.message,
     this.actionLabel,
     this.onAction,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -403,14 +403,14 @@ class AppProgress extends StatelessWidget {
   final bool showPercentage;
 
   const AppProgress({
-    Key? key,
+    super.key,
     required this.value,
     this.label,
     this.backgroundColor,
     this.valueColor,
     this.height,
     this.showPercentage = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -427,7 +427,7 @@ class AppProgress extends StatelessWidget {
                 if (label != null)
                   Text(
                     label!,
-                    style: getMediumStyle(),
+                    style: getMediumStyle(color: AppColors.darkColor),
                   ),
                 if (showPercentage)
                   Text(

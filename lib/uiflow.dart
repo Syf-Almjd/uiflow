@@ -1,4 +1,4 @@
-library uiflow;
+// UIFlow library exports and definition
 
 // Export components
 export 'src/components/buttons.dart';
@@ -34,3 +34,14 @@ export 'src/config/utils/managers/app_formatters.dart';
 export 'src/config/utils/styles/app_colors.dart';
 export 'src/config/utils/styles/app_fonts.dart';
 export 'src/config/utils/styles/app_textstyles.dart';
+
+// Platform interface and main class
+export 'uiflow_platform_interface.dart';
+
+import 'uiflow_platform_interface.dart';
+
+class Uiflow {
+  Future<String?> getPlatformVersion() {
+    return UiflowPlatform.instance.getPlatformVersion();
+  }
+}

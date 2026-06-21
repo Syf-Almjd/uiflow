@@ -134,9 +134,8 @@ ThemeData getDarkApplicationTheme() {
           shadowColor: AppColors.lowPriority,
           titleTextStyle: getRegularStyle(
               color: AppColors.white, fontSize: AppFontSize.s16)),
-      // Button theme
-      buttonTheme: ButtonThemeData(
-          shape: const StadiumBorder(),
+      buttonTheme: const ButtonThemeData(
+          shape: StadiumBorder(),
           disabledColor: AppColors.greyDark,
           buttonColor: AppColors.primaryColor,
           splashColor: AppColors.lowPriority),

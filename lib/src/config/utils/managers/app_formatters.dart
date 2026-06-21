@@ -13,7 +13,7 @@ class AppFormatters {
 
       StringBuffer formatted = StringBuffer();
       
-      if (text.length >= 1) {
+      if (text.isNotEmpty) {
         formatted.write('(');
         formatted.write(text.substring(0, text.length.clamp(0, 3)));
         
